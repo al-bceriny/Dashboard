@@ -24,10 +24,19 @@ COPY . .
 RUN composer install --no-interaction --optimize-autoloader --ignore-platform-reqs
 
 # Set environment file
-COPY .env.example .env
+# COPY .env.example .env
 
 # Generate app key
 RUN php artisan key:generate
+RUN php artisan config:clear
+
+
+
+# Frontend build
+RUN npm install
+RUN npm run build
+
+RUN php artisan migrate --force
 
 # Expose the port Render expects
 EXPOSE 10000
