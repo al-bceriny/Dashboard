@@ -24,11 +24,11 @@ COPY . .
 RUN composer install --no-interaction --optimize-autoloader --ignore-platform-reqs
 
 # Set environment file
-# COPY .env.example .env
+COPY .env.example .env
 
 # Generate app key
-RUN php artisan key:generate
-RUN php artisan config:clear
+# RUN php artisan key:generate
+# RUN php artisan config:clear
 
 
 
